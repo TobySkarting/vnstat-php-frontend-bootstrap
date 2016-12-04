@@ -35,28 +35,15 @@
         }
     }
 
-
+	
+	// https://github.com/GldRush98/vnstat-php-frontend/commit/dabea1be85d0ae912ea0787d161a5a5e7c13158e
     function kbytes_to_string($kb) {
-
-        global $byte_notation;
-
-        $units = array('TB','GB','MB','KB');
-        $scale = 1024*1024*1024;
-        $ui = 0;
-
-        $custom_size = isset($byte_notation) && in_array($byte_notation, $units);
-
-        while ((($kb < $scale) && ($scale > 1)) || $custom_size)
-        {
-            $ui++;
-            $scale = $scale / 1024;
-
-            if ($custom_size && $units[$ui] == $byte_notation) {
-                break;
-            }
-        }
-
-        return sprintf("%0.2f %s", ($kb/$scale),$units[$ui]);
+        $units = array('KB', 'MB', 'GB', 'TB');
+        $kb = max($kb, 0);
+        $pow = floor(($kb ? log($kb) : 0) / log(1024)); 
+        $pow = min($pow, count($units) - 1); 
+ 	    $kb /= pow(1024, $pow);
+        return round($kb, 2) . ' ' . $units[$pow];
     }
 
     function write_summary() {
