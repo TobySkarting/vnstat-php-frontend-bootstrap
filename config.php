@@ -64,10 +64,6 @@
     // Note: png has best results for bootstrap
     $graph_format='png'; 
 
-    // preferred byte notation. null auto chooses. otherwise use one of
-    // 'TB','GB','MB','KB'
-    $byte_notation = null;
-
     // Font to use for PNG graphs
     define('GRAPH_FONT',dirname(__FILE__).'/fonts/Verdana.ttf');
 
