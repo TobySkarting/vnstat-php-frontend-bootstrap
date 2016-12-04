@@ -21,6 +21,14 @@
     // for more information.
     //
     
+    
+    // This code was written with love.
+    // There are/were _NO_ malicious intents in making this.
+    // If I am disrespecting any licensing please let me know,
+    // but I've tried my best as a new programmer to follow them.
+	// ~GotKrypto
+	
+	
     require 'config.php';
     require 'localize.php';
     require 'vnstat.php';
@@ -155,7 +163,7 @@
 				<div id="footer">
 					<center>
 						<p><a href="http://www.sqweek.com/">vnStat PHP frontend</a> 1.5.2 - ©2006-2011 <a href="https://github.com/bjd">Bjorge Dijkstra</a> (bjd _at_ jooz.net)</p>
-						<p>Bootstrap version of <a href="http://www.sqweek.com/">vnStat PHP frontend</a> 1.5.2 by <a href="https://github.com/gotkrypto76">GotKrypto76</a></p>
+						<p><a href="https://github.com/gotkrypto76/vnstat-php-frontend-bootstrap.git">Bootstrap version</a> of <a href="http://www.sqweek.com/">vnStat PHP frontend</a> 1.5.2 by <a href="https://github.com/gotkrypto76">GotKrypto76</a></p>
 					</center>
 				</div>';
 			}
