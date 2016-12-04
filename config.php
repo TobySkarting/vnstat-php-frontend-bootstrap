@@ -28,20 +28,20 @@
     // edit these to reflect your particular situation
     //
     $locale = 'en_US.UTF-8';
-    $language = 'nl';
+    $language = 'en';
 
     // Set local timezone
-    date_default_timezone_set("Europe/Amsterdam");
+    date_default_timezone_set("America/Chicago");
 
     // list of network interfaces monitored by vnStat
-    $iface_list = array('eth0', 'sixxs');
+    $iface_list = array('eth1', 'sixxs');
 
     //
     // optional names for interfaces
     // if there's no name set for an interface then the interface identifier
     // will be displayed instead
     //
-    $iface_title['eth0'] = 'Internal';
+    $iface_title['eth1'] = 'Internal';
     $iface_title['sixxs'] = 'SixXS IPv6';
 
     //
@@ -61,22 +61,45 @@
     $data_dir = './dumps';
 
     // graphics format to use: svg or png
-    $graph_format='svg';
+    // Note: png has best results for bootstrap
+    $graph_format='png'; 
 
     // preferred byte notation. null auto chooses. otherwise use one of
     // 'TB','GB','MB','KB'
     $byte_notation = null;
 
     // Font to use for PNG graphs
-    define('GRAPH_FONT',dirname(__FILE__).'/VeraBd.ttf');
+    define('GRAPH_FONT',dirname(__FILE__).'/fonts/Verdana.ttf');
 
     // Font to use for SVG graphs
     define('SVG_FONT', 'Verdana');
 
-    // Default theme
-    define('DEFAULT_COLORSCHEME', 'light');
+	// Location of navbar brand href
+    define('BRAND_LOCATION', '/');
+    
+    // Default bootstrap theme
+    // Themes are located in /css
+    // Themes are named "*.bootstrap.min.css"
+    define('DEFAULT_THEME', 'default');
+    
+    // Shows or hides footer on site
+    define('SHOW_FOOTER', 1);
     
     // SVG Depth scaling factor
     define('SVG_DEPTH_SCALING', 1);
+    
+    // Show errors
+    ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
 
+
+	/* * * * Config Preprocessing * * * */
+	// Don't touch this stuff.
+	
+	// Make sure style exists.
+	if(!file_exists(dirname(__FILE__).'/css/'.DEFAULT_THEME.'.bootstrap.min.css')) { die("The theme '".DEFAULT_THEME."' does not exist."); }
+	// Make sure graph font exists.
+	if(!file_exists(GRAPH_FONT)) { die("The font '".basename(GRAPH_FONT)."' does not exist."); }
+	/* * * * End Preprocessing * * * */
 ?>

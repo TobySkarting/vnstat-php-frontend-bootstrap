@@ -20,197 +20,149 @@
     // see file COPYING or at http://www.gnu.org/licenses/gpl.html
     // for more information.
     //
+    
     require 'config.php';
     require 'localize.php';
     require 'vnstat.php';
-
+	require 'functions.php';
+	
+	
     validate_input();
 
-    require "./themes/$style/theme.php";
+    switch($page) {
+		case 's':
+			$pageType = 'summary';
+			break;
 
-    function write_side_bar()
-    {
-        global $iface, $page, $graph, $script, $style;
-        global $iface_list, $iface_title;
-        global $page_list, $page_title;
+		case 'h':
+			$pageType = 'hours';
+			break;
 
-        $p = "&amp;graph=$graph&amp;style=$style";
+		case 'd':
+			$pageType = 'days';
+			break;
 
-        print "<ul class=\"iface\">\n";
-        foreach ($iface_list as $if)
-        {
-            if ($iface == $if) {
-                print "<li class=\"iface active\">";
-            } else {
-                print "<li class=\"iface\">";
-            }
-            print "<a href=\"$script?if=$if$p\">";
-            if (isset($iface_title[$if]))
-            {
-                print $iface_title[$if];
-            }
-            else
-            {
-                print $if;
-            }
-            print "</a>";
-            print "<ul class=\"page\">\n";
-            foreach ($page_list as $pg)
-            {
-                print "<li class=\"page\"><a href=\"$script?if=$if$p&amp;page=$pg\">".$page_title[$pg]."</a></li>\n";
-            }
-            print "</ul></li>\n";
-        }
-        print "</ul>\n";
-    }
+		case 'm':
+			$pageType = 'months';
+			break;
 
-
-    function kbytes_to_string($kb)
-    {
-
-        global $byte_notation;
-
-        $units = array('TB','GB','MB','KB');
-        $scale = 1024*1024*1024;
-        $ui = 0;
-
-        $custom_size = isset($byte_notation) && in_array($byte_notation, $units);
-
-        while ((($kb < $scale) && ($scale > 1)) || $custom_size)
-        {
-            $ui++;
-            $scale = $scale / 1024;
-
-            if ($custom_size && $units[$ui] == $byte_notation) {
-                break;
-            }
-        }
-
-        return sprintf("%0.2f %s", ($kb/$scale),$units[$ui]);
-    }
-
-    function write_summary()
-    {
-        global $summary,$top,$day,$hour,$month;
-
-        $trx = $summary['totalrx']*1024+$summary['totalrxk'];
-        $ttx = $summary['totaltx']*1024+$summary['totaltxk'];
-
-        //
-        // build array for write_data_table
-        //
-
-        $sum = array();
-
-        if (count($day) > 0 && count($hour) > 0 && count($month) > 0) {
-            $sum[0]['act'] = 1;
-            $sum[0]['label'] = T('This hour');
-            $sum[0]['rx'] = $hour[0]['rx'];
-            $sum[0]['tx'] = $hour[0]['tx'];
-
-            $sum[1]['act'] = 1;
-            $sum[1]['label'] = T('This day');
-            $sum[1]['rx'] = $day[0]['rx'];
-            $sum[1]['tx'] = $day[0]['tx'];
-
-            $sum[2]['act'] = 1;
-            $sum[2]['label'] = T('This month');
-            $sum[2]['rx'] = $month[0]['rx'];
-            $sum[2]['tx'] = $month[0]['tx'];
-
-            $sum[3]['act'] = 1;
-            $sum[3]['label'] = T('All time');
-            $sum[3]['rx'] = $trx;
-            $sum[3]['tx'] = $ttx;
-        }
-
-        write_data_table(T('Summary'), $sum);
-        print "<br/>\n";
-        write_data_table(T('Top 10 days'), $top);
-    }
-
-
-    function write_data_table($caption, $tab)
-    {
-        print "<table width=\"100%\" cellspacing=\"0\">\n";
-        print "<caption>$caption</caption>\n";
-        print "<tr>";
-        print "<th class=\"label\" style=\"width:120px;\">&nbsp;</th>";
-        print "<th class=\"label\">".T('In')."</th>";
-        print "<th class=\"label\">".T('Out')."</th>";
-        print "<th class=\"label\">".T('Total')."</th>";
-        print "</tr>\n";
-
-        for ($i=0; $i<count($tab); $i++)
-        {
-            if ($tab[$i]['act'] == 1)
-            {
-                $t = $tab[$i]['label'];
-                $rx = kbytes_to_string($tab[$i]['rx']);
-                $tx = kbytes_to_string($tab[$i]['tx']);
-                $total = kbytes_to_string($tab[$i]['rx']+$tab[$i]['tx']);
-                $id = ($i & 1) ? 'odd' : 'even';
-                print "<tr>";
-                print "<td class=\"label_$id\">$t</td>";
-                print "<td class=\"numeric_$id\">$rx</td>";
-                print "<td class=\"numeric_$id\">$tx</td>";
-                print "<td class=\"numeric_$id\">$total</td>";
-                print "</tr>\n";
-             }
-        }
-        print "</table>\n";
-    }
-
-    get_vnstat_data();
-
+		default:
+			//Unknown page type, just do summary.
+			$pageType = 'summary';
+	}
+	
+	get_vnstat_data();
+	
     //
     // html start
     //
     header('Content-type: text/html; charset=utf-8');
     print '<?xml version="1.0"?>';
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-  <title>vnStat - PHP frontend</title>
-  <link rel="stylesheet" type="text/css" href="themes/<?php echo $style ?>/style.css"/>
-</head>
-<body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<div id="wrap">
-  <div id="sidebar"><?php write_side_bar(); ?></div>
-   <div id="content">
-    <div id="header"><?php print T('Traffic data for').(isset($iface_title[$iface]) ? $iface_title[$iface] : '')." ($iface)";?></div>
-    <div id="main">
-    <?php
-    $graph_params = "if=$iface&amp;page=$page&amp;style=$style";
-    if ($page != 's')
-        if ($graph_format == 'svg') {
-	     print "<object type=\"image/svg+xml\" width=\"692\" height=\"297\" data=\"graph_svg.php?$graph_params\"></object>\n";
-        } else {
-	     print "<img src=\"graph.php?$graph_params\" alt=\"graph\"/>\n";
-        }
+    <title><?php print T('Server Bandwidth Information'); ?></title>
 
-    if ($page == 's')
-    {
-        write_summary();
-    }
-    else if ($page == 'h')
-    {
-        write_data_table(T('Last 24 hours'), $hour);
-    }
-    else if ($page == 'd')
-    {
-        write_data_table(T('Last 30 days'), $day);
-    }
-    else if ($page == 'm')
-    {
-        write_data_table(T('Last 12 months'), $month);
-    }
-    ?>
-    </div>
-    <div id="footer"><a href="http://www.sqweek.com/">vnStat PHP frontend</a> 1.5.2 - &copy;2006-2011 Bjorge Dijkstra (bjd _at_ jooz.net)</div>
-  </div>
-</div>
+    <meta name="description" content="<?php print T('Meta Description'); ?>">
+    
+    <link href="css/<?php echo DEFAULT_THEME; ?>.bootstrap.min.css" rel="stylesheet">
+    <link href="css/hack.css" rel="stylesheet">
+  </head>
+  <body>
 
-</body></html>
+    <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only"><?php print T('Toggle navigation'); ?></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="<?php print BRAND_LOCATION; ?>"><?php print T('Server Bandwidth'); ?></a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <?php create_drop_downs(); ?>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+      <br/>
+      <br/>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+				<h1>
+					<?php print (isset($iface_title[$iface]) ? $iface_title[$iface] : '') .' ('.$iface.')' . ' <small>'. T('Traffic data') .' | '.ucfirst(T($pageType)); ?></small>
+				</h1>
+			</div>
+			
+			<?php
+			$graph_params = "if=$iface&page=$page";
+			if ($page != 's') {
+				print '
+				<div name="graph">
+				<center>
+					<div class="panel panel-default">
+					  <div class="panel-heading">Traffic Graph</div>
+					  <div class="panel-body">';
+				if ($graph_format == 'svg') {
+					print "
+					<div class='svg-container'>
+						<object class='svg-content' type=\"image/svg+xml\"  data=\"graph_svg.php?$graph_params\"></object>
+					</div>";
+				} else {
+					print "<img class='img-responsive' src=\"graph.php?$graph_params\" alt=\"graph\"/>";
+				}
+				print '
+							</div>
+						</div>
+					</center>
+				</div>';
+			}
+				switch($page) {
+					case 's':
+						write_summary();
+						break;
+		
+					case 'h':
+						write_data_table(T('Last 24 hours'), $hour);
+						break;
+		
+					case 'd':
+						write_data_table(T('Last 30 days'), $day);
+						break;
+		
+					case 'm':
+						write_data_table(T('Last 12 months'), $month);
+						break;
+		
+					default:
+						//Unknown page type, just show summary.
+						write_summary();
+				}
+			
+			if(SHOW_FOOTER) {
+				print '
+				<br/>
+				<div id="footer">
+					<center>
+						<p><a href="http://www.sqweek.com/">vnStat PHP frontend</a> 1.5.2 - ©2006-2011 <a href="https://github.com/bjd">Bjorge Dijkstra</a> (bjd _at_ jooz.net)</p>
+						<p>Bootstrap version of <a href="http://www.sqweek.com/">vnStat PHP frontend</a> 1.5.2 by <a href="https://github.com/gotkrypto76">GotKrypto76</a></p>
+					</center>
+				</div>';
+			}
+			?>
+		</div>
+	</div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -26,7 +26,19 @@
 
     validate_input();
 
-    require "./themes/$style/theme.php";
+    $colorscheme = array(
+		'image_background'   => array( 255, 255, 255,   0 ),
+		'graph_background'   => array( 220, 220, 230,   0 ),
+		'graph_background_2' => array( 205, 205, 220,   0 ),
+		'grid_stipple_1'     => array( 140, 140, 140,   0 ),
+			'grid_stipple_2'     => array( 200, 200, 200,   0 ),
+		'border'             => array(   0,   0,   0,   0 ),
+		'text'               => array(   0,   0,   0,   0 ),
+		'rx'                 => array( 190, 190,  20,  50 ),
+		'rx_border'	      => array(  40,  80,  40,  90 ),
+		'tx'	              => array( 130, 160, 100,  50 ),
+		'tx_border'          => array(  80,  40,  40,  90 )
+     );
 
     function allocate_color($im, $colors)
     {
@@ -35,8 +47,7 @@
 
     function init_image()
     {
-        global $im, $xlm, $xrm, $ytm, $ybm, $iw, $ih,$graph, $cl, $iface, $colorscheme, $style;
-
+        global $im, $xlm, $xrm, $ytm, $ybm, $iw, $ih,$graph, $cl, $iface, $colorscheme;
         if ($graph == 'none')
             return;
 
@@ -63,10 +74,10 @@
         //
         // colors
         //
-	$cs = $colorscheme;
-	$cl['image_background'] = allocate_color($im, $cs['image_background']);
-	$cl['background'] = allocate_color($im, $cs['graph_background']);
-	$cl['background_2'] = allocate_color($im, $cs['graph_background_2']);
+		$cs = $colorscheme;
+		$cl['image_background'] = allocate_color($im, $cs['image_background']);
+		$cl['background'] = allocate_color($im, $cs['graph_background']);
+		$cl['background_2'] = allocate_color($im, $cs['graph_background_2']);
         $cl['grid_stipple_1'] = allocate_color($im, $cs['grid_stipple_1']);
         $cl['grid_stipple_2'] = allocate_color($im, $cs['grid_stipple_2']);
         $cl['text'] = allocate_color($im, $cs['text']);
@@ -76,7 +87,7 @@
         $cl['tx'] = allocate_color($im, $cs['tx']);
         $cl['tx_border'] = allocate_color($im, $cs['tx_border']);
 
-        imagefilledrectangle($im,0,0,$iw,$ih,$cl['image_background']);
+    imagefilledrectangle($im,0,0,$iw,$ih,$cl['image_background']);
 	imagefilledrectangle($im,$xlm,$ytm,$iw-$xrm,$ih-$ybm, $cl['background']);
 
 	$x_step = ($iw - $xlm - $xrm) / 12;

@@ -58,14 +58,26 @@
         global $page,  $page_list;
         global $iface, $iface_list;
         global $graph, $graph_list;
-	global $colorscheme, $style;
+		global $colorscheme;
+		$colorscheme = array(
+		 'image_background'   => array( 255, 255, 255,   0 ),
+		 'graph_background'   => array( 220, 220, 230,   0 ),
+		 'graph_background_2' => array( 205, 205, 220,   0 ),
+		 'grid_stipple_1'     => array( 140, 140, 140,   0 ),
+			 'grid_stipple_2'     => array( 200, 200, 200,   0 ),
+		 'border'             => array(   0,   0,   0,   0 ),
+		 'text'               => array(   0,   0,   0,   0 ),
+		 'rx'                 => array( 190, 190,  20,  50 ),
+		 'rx_border'	      => array(  40,  80,  40,  90 ),
+		 'tx'	              => array( 130, 160, 100,  50 ),
+		 'tx_border'          => array(  80,  40,  40,  90 )
+     	);
         //
         // get interface data
         //
         $page = isset($_GET['page']) ? $_GET['page'] : '';
         $iface = isset($_GET['if']) ? $_GET['if'] : '';
         $graph = isset($_GET['graph']) ? $_GET['graph'] : '';
-        $style = isset($_GET['style']) ? $_GET['style'] : '';
 
         if (!in_array($page, $page_list))
         {
@@ -81,12 +93,6 @@
         {
             $graph = $graph_list[0];
         }
-
-	$tp = "./themes/$style";
-        if (!is_dir($tp) || !file_exists("$tp/theme.php") || !preg_match('/^[a-z0-9-_]+$/i', $style))
-        {
-	    $style = DEFAULT_COLORSCHEME;
-        }
     }
 
 
@@ -95,7 +101,7 @@
         global $iface, $vnstat_bin, $data_dir;
         global $hour,$day,$month,$top,$summary;
 
-	$vnstat_data = array();
+		$vnstat_data = array();
         if (!isset($vnstat_bin) || $vnstat_bin == '')
         {
 	    if (file_exists("$data_dir/vnstat_dump_$iface"))

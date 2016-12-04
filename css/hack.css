@@ -1,0 +1,9 @@
+// SVG Hack
+// http://thenewcode.com/744/Make-SVG-Responsive
+
+.svg-content { 
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
