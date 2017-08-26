@@ -114,13 +114,12 @@
                     <div id="live">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Live Traffic</h4></div>
+                            <div class="panel-body">
                             <?php
                                 if (LIVE_DATA) {
-                                    echo '<div class="panel-body">',
-                                         '<div id="download">',
+                                    echo '<div id="download">',
                                          '</div>',
                                          '<div id="upload">',
-                                         '</div>',
                                          '</div>',
                                          '<script src="js/live.js"></script>',
                                          '<script type="text/javascript">',
@@ -132,6 +131,7 @@
                                     print "Live data deactivated";
                                 }
                             ?>
+                            </div>
 
                         </div>
                     </div>
