@@ -74,7 +74,7 @@
     define('SVG_FONT', 'Verdana');
 
 	// Location of navbar brand href
-    define('BRAND_LOCATION', '/');
+    define('BRAND_LOCATION', '/vnstat');
     
     // Default bootstrap theme
     // Themes are located in /css
@@ -82,7 +82,7 @@
     define('DEFAULT_THEME', 'darkly');
     
     // Shows or hides footer on site
-    define('SHOW_FOOTER', 1);
+    define('SHOW_FOOTER', 0);
     
     // SVG Depth scaling factor
     define('SVG_DEPTH_SCALING', 1);
