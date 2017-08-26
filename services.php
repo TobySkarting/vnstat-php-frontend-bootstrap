@@ -8,6 +8,7 @@
 
 require_once 'config.php';
 
+// Shamelessly stolen from QuickBox
 function processExists($processName) {
     $exists= false;
     exec("ps axo user:20,pid,pcpu,pmem,vsz,rss,tty,stat,start,time,comm|grep -iE $processName | grep -v grep", $pids);

@@ -83,6 +83,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/live.js"></script>
+    <script src="js/services.js"></script>
     </head>
     <body>
         <div class="container">
@@ -150,8 +151,7 @@
                                         <th>Status</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php require_once 'services.php'; ?>
+                                    <tbody class="services-tablebody">
                                     </tbody>
                                 </table>
                             </div>
