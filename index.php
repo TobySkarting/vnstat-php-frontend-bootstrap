@@ -123,7 +123,7 @@
                                          '</div>',
                                          '<script src="js/live.js"></script>',
                                          '<script type="text/javascript">',
-                                         'startPolling("' . $iface . '", '. LIVE_DATA_INTERVAL .');',
+                                         '$(document).ready(startPolling("' . $iface . '", '. LIVE_DATA_INTERVAL .'));',
                                          '</script>'
                                     ;
 
