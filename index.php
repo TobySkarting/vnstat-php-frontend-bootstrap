@@ -124,7 +124,7 @@
                                          '</div>',
                                          '<div id="upload">Upload: FETCHING',
                                          '</div>',
-                                         '<script type="text/javascript">',
+                                         '<script type="text/javascript" defer>',
                                          '$(document).ready(startPolling("' . $iface . '", '. LIVE_DATA_INTERVAL .'));',
                                          '</script>'
                                     ;
