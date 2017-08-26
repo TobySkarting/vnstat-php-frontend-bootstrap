@@ -115,21 +115,19 @@
                     </h1>
                 </div>
                 <div class="col-xs-3">
-                    <div id="live">
+                    <div id="live" data-iface="<?php echo $iface ?>" data-interval="<?php echo LIVE_DATA_INTERVAL ?>">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Live Traffic</h4></div>
                             <div class="panel-body">
                             <?php
                                 if (LIVE_DATA) {
-                                    echo '<div id="download">Download: FETCHING',
-                                         '</div>',
-                                         '<div id="upload">Upload: FETCHING',
-                                         '</div>',
-                                         '<script type="text/javascript">',
-                                         '$(document).ready(startPolling("' . $iface . '", '. LIVE_DATA_INTERVAL .'));',
-                                         '</script>'
-                                    ;
-
+                            ?>
+                                <div id="download">Download: FETCHING</div>
+                                <div id="upload">Upload: FETCHING</div>
+                                <script type="text/javascript">
+                                    $(function() {startPolling;});
+                                </script>
+                            <?php
                                 } else {
                                     print "Live data deactivated";
                                 }

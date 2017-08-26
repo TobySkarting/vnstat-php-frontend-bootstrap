@@ -8,7 +8,7 @@ function updateServiceStatus() {
     }});
 }
 
-$(document).ready(function() {
+$(function() {
     updateServiceStatus();
     setInterval(updateServiceStatus, 3000);
 });

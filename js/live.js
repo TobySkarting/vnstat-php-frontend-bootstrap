@@ -28,7 +28,10 @@ function addLiveDataToDom(result) {
 }
 
 // Start polling
-function startPolling(iface, interval) {
+function startPolling() {
+    var live = $("#live");
+    var iface = live.data("iface");
+    var interval = live.data("interval");
     // init
     poll(iface);
     setInterval(function() { poll(iface) }, interval)
