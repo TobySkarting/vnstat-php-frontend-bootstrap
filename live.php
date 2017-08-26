@@ -17,5 +17,5 @@ if (in_array($current_iface, $iface_list)) {
     sleep(1);
     $rx2 = @file_get_contents("/sys/class/net/" . $current_iface . "/statistics/rx_bytes");
     $tx2 = @file_get_contents("/sys/class/net/" . $current_iface . "/statistics/tx_bytes");
-    print  $rx1 . ',' . $tx1 . ";" . $rx2 . ',' . $tx2;
+    print  trim($rx1) . ',' . trim($tx1) . ";" . trim($rx2) . ',' . trim($tx2);
 }
