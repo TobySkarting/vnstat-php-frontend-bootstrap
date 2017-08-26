@@ -1,8 +1,8 @@
--1. WHAT'S NEW IN THIS FORK?
+0a. WHAT'S NEW IN THIS FORK?
 - Live display of network throughput
 - Status (live) of processes of your choosing
 
-0. WHAT IS IT?
+0b. WHAT IS IT?
 
 This is a PHP frontend end to vnstat, a network traffic logger.
 Since vnstat is console mode only I created this script to
