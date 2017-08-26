@@ -2,8 +2,8 @@
  * Created by cvium on 26-08-2017.
  */
 
-function poll() {
-    $.ajax({url: "live.php", success: function(result) {
+function poll(iface) {
+    $.ajax({url: "live.php?if=" + iface, success: function(result) {
         addLiveDataToDom(result);
     }});
 }
@@ -28,4 +28,6 @@ function addLiveDataToDom(result) {
 }
 
 // Start polling
-$(document).ready(setInterval(poll, 3000));
+function startPolling(iface, interval) {
+    setInterval(function() { poll(iface) }, interval)
+}

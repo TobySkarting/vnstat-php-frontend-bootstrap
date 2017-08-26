@@ -114,12 +114,24 @@
                     <div id="live">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Live Traffic</h4></div>
-                            <div class="panel-body">
-                                <div id="download">
-                                </div>
-                                <div id="upload">
-                                </div>
-                            </div>
+                            <?php
+                                if (LIVE_DATA) {
+                                    echo '<div class="panel-body">',
+                                         '<div id="download">',
+                                         '</div>',
+                                         '<div id="upload">',
+                                         '</div>',
+                                         '</div>',
+                                         '<script type="text/javascript">',
+                                         'startPolling(' . $iface . ', '. LIVE_DATA_INTERVAL .');',
+                                         '</script>'
+                                    ;
+
+                                } else {
+                                    print "Live data deactivated";
+                                }
+                            ?>
+
                         </div>
                     </div>
                 </div>
