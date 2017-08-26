@@ -20,7 +20,7 @@ function formatBytes(bytes,decimals) {
 function addLiveDataToDom(result) {
     var results = result.split(";");
     var res1 = results[0].split(",");
-    var res2 = results[0].split(",");
+    var res2 = results[1].split(",");
     var rx = formatBytes(res2[0] - res1[0]);
     var tx = formatBytes(res2[1] - res1[1]);
     $("#download").text("Download: " + rx + "/s");
