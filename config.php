@@ -31,18 +31,22 @@
     $language = 'en';
 
     // Set local timezone
-    date_default_timezone_set("America/Chicago");
+    date_default_timezone_set("America/Copenhagen");
 
     // list of network interfaces monitored by vnStat
-    $iface_list = array('eth1', 'sixxs');
+    $iface_list = array('eno1');
 
     //
     // optional names for interfaces
     // if there's no name set for an interface then the interface identifier
     // will be displayed instead
     //
-    $iface_title['eth1'] = 'Internal';
-    $iface_title['sixxs'] = 'SixXS IPv6';
+    $iface_title['eno1'] = 'Internal';
+
+    // Show live data -- set to false if you don't want live network data
+    // TODO: implement
+    DEFINE('LIVE_DATA', true);
+    DEFINE('LIVE_DATA_INTERVAL', 3000);
 
     //
     // There are two possible sources for vnstat data. If the $vnstat_bin
