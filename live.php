@@ -6,7 +6,7 @@
  * Time: 13:10
  */
 
-require 'config.php';
+require_once 'config.php';
 
 header('Refresh: 1');
 header('Content-Type: text/event-stream');

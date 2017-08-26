@@ -6,7 +6,7 @@
  * Time: 17:20
  */
 
-require 'config.php';
+require_once 'config.php';
 
 $username = getUser();
 function processExists($processName, $username) {

@@ -20,13 +20,13 @@
     // see file COPYING or at http://www.gnu.org/licenses/gpl.html
     // for more information.
     //
-    require 'config.php';
-    require 'localize.php';
-    require 'vnstat.php';
+    require_once 'config.php';
+    require_once 'localize.php';
+    require_once 'vnstat.php';
 
     validate_input();
 
-    require "./themes/$style/theme.php";
+    require_once "./themes/$style/theme.php";
 
     function write_summary()
     {

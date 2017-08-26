@@ -29,10 +29,10 @@
 	// ~GotKrypto
 	
 	
-    require 'config.php';
-    require 'localize.php';
-    require 'vnstat.php';
-	require 'functions.php';
+    require_once 'config.php';
+    require_once 'localize.php';
+    require_once 'vnstat.php';
+	require_once 'functions.php';
 	
 	
     validate_input();
@@ -143,7 +143,7 @@
                                 <h4>Services</h4>
                             </div>
                             <div class="panel-body">
-                                <?php require 'services.php'; ?>
+                                <?php require_once 'services.php'; ?>
                             </div>
                         </div>
                     </div>
