@@ -122,6 +122,7 @@
                                          '<div id="upload">',
                                          '</div>',
                                          '</div>',
+                                         '<script src="js/live.js"></script>',
                                          '<script type="text/javascript">',
                                          'startPolling(' . $iface . ', '. LIVE_DATA_INTERVAL .');',
                                          '</script>'
@@ -197,6 +198,5 @@
         </div>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/live.js"></script>
     </body>
 </html>
