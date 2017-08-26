@@ -31,7 +31,7 @@
     $language = 'en';
 
     // Set local timezone
-    date_default_timezone_set("America/Copenhagen");
+    date_default_timezone_set("Europe/Copenhagen");
 
     // list of network interfaces monitored by vnStat
     $iface_list = array('eno1');
@@ -41,7 +41,7 @@
     // if there's no name set for an interface then the interface identifier
     // will be displayed instead
     //
-    $iface_title['eno1'] = 'Internal';
+    $iface_title['eno1'] = 'WAN';
 
     // Show live data -- set to false if you don't want live network data
     // TODO: implement
@@ -80,7 +80,7 @@
     // Default bootstrap theme
     // Themes are located in /css
     // Themes are named "*.bootstrap.min.css"
-    define('DEFAULT_THEME', 'default');
+    define('DEFAULT_THEME', 'darkly');
     
     // Shows or hides footer on site
     define('SHOW_FOOTER', 1);
