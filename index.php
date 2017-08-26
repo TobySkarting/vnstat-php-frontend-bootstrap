@@ -124,7 +124,7 @@
                                          '</div>',
                                          '<script src="js/live.js"></script>',
                                          '<script type="text/javascript">',
-                                         'startPolling(' . $iface . ', '. LIVE_DATA_INTERVAL .');',
+                                         'startPolling("' . $iface . '", '. LIVE_DATA_INTERVAL .');',
                                          '</script>'
                                     ;
 
