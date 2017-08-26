@@ -8,7 +8,7 @@
 
 require 'config.php';
 
-$current_iface = $_GET['if'];
+$current_iface = isset($_GET['if']) ? $_GET['if'] : $iface_list[0];
 
 // Make sure we don't open ourselves up to bad things
 if (in_array($current_iface, $iface_list)) {
