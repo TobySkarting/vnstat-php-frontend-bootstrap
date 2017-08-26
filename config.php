@@ -44,7 +44,6 @@
     $iface_title['eno1'] = 'WAN';
 
     // Show live data -- set to false if you don't want live network data
-    // TODO: implement
     DEFINE('LIVE_DATA', true);
     DEFINE('LIVE_DATA_INTERVAL', 3000);
 
