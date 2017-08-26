@@ -137,6 +137,16 @@
 
                         </div>
                     </div>
+                    <div id="services">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4>Services</h4>
+                            </div>
+                            <div class="panel-body">
+                                <?php require 'services.php'; ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-xs-9">
                     <?php

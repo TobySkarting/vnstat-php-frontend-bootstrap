@@ -47,6 +47,9 @@
     DEFINE('LIVE_DATA', true);
     DEFINE('LIVE_DATA_INTERVAL', 3000);
 
+    // Services
+    $service_list = array('deluged', 'deluge-web');
+
     //
     // There are two possible sources for vnstat data. If the $vnstat_bin
     // variable is set then vnstat is called directly from the PHP script
