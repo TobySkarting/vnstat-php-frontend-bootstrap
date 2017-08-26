@@ -125,7 +125,7 @@
                                 <div id="download">Download: FETCHING</div>
                                 <div id="upload">Upload: FETCHING</div>
                                 <script type="text/javascript">
-                                    $(function() {startPolling;});
+                                    $(function() {startPolling();});
                                 </script>
                             <?php
                                 } else {
