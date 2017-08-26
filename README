@@ -1,3 +1,7 @@
+-1. WHAT'S NEW IN THIS FORK?
+- Live display of network throughput
+- Status (live) of processes of your choosing
+
 0. WHAT IS IT?
 
 This is a PHP frontend end to vnstat, a network traffic logger.
