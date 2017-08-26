@@ -8,6 +8,10 @@
 
 require 'config.php';
 
+header('Refresh: 1');
+header('Content-Type: text/event-stream');
+header('Cache-Control: no-cache');
+
 $current_iface = isset($_GET['if']) ? $_GET['if'] : $iface_list[0];
 
 // Make sure we don't open ourselves up to bad things
