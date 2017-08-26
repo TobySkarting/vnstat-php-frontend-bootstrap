@@ -80,6 +80,9 @@
 
     <link href="css/<?php echo DEFAULT_THEME; ?>.bootstrap.min.css" rel="stylesheet">
     <link href="css/hack.css" rel="stylesheet">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/bootstrap.min.js" defer></script>
+    <script src="js/live.js" defer></script>
     </head>
     <body>
         <div class="container">
@@ -121,7 +124,6 @@
                                          '</div>',
                                          '<div id="upload">Upload: FETCHING',
                                          '</div>',
-                                         '<script src="js/live.js"></script>',
                                          '<script type="text/javascript">',
                                          '$(document).ready(startPolling("' . $iface . '", '. LIVE_DATA_INTERVAL .'));',
                                          '</script>'
@@ -196,7 +198,5 @@
                 </div>
             </div>
         </div>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
