@@ -18,6 +18,9 @@ function processExists($processName) {
 }
 
 foreach($service_list as $service) {
-    print '<div class="service">' . $service . ': ' . (processExists($service) ? 'UP' : 'DOWN') . '</div>';
+    print '<tr>';
+    print '<td class="service">' . $service . '</td>';
+    print '<td class="status">' . (processExists($service) ? 'UP' : 'DOWN') . '</td>';
+    print '</tr>';
 }
 

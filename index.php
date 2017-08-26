@@ -143,7 +143,17 @@
                                 <h4>Services</h4>
                             </div>
                             <div class="panel-body">
-                                <?php require_once 'services.php'; ?>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Service</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php require_once 'services.php'; ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
