@@ -29,5 +29,7 @@ function addLiveDataToDom(result) {
 
 // Start polling
 function startPolling(iface, interval) {
+    // init
+    poll(iface);
     setInterval(function() { poll(iface) }, interval)
 }

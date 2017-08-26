@@ -117,9 +117,9 @@
                             <div class="panel-body">
                             <?php
                                 if (LIVE_DATA) {
-                                    echo '<div id="download">',
+                                    echo '<div id="download">Download: FETCHING',
                                          '</div>',
-                                         '<div id="upload">',
+                                         '<div id="upload">Upload: FETCHING',
                                          '</div>',
                                          '<script src="js/live.js"></script>',
                                          '<script type="text/javascript">',
