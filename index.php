@@ -110,7 +110,7 @@
                         <?php print (isset($iface_title[$iface]) ? $iface_title[$iface] : '') .' ('.$iface.')' . ' <small>'. T('Traffic data') .' | '.ucfirst(T($pageType)); ?>
                     </h1>
                 </div>
-                <div class="col-xs-2">
+                <div class="col-xs-3">
                     <div id="live">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Live Traffic</h4></div>
@@ -136,7 +136,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-10">
+                <div class="col-xs-9">
                     <?php
                     $graph_params = "if=$iface&page=$page";
                     if ($page != 's') {
