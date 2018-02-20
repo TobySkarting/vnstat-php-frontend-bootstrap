@@ -111,7 +111,7 @@
             <div class="col-xs-12">
                 <div class="page-header">
                     <h1>
-                        <?php print (isset($iface_title[$iface]) ? $iface_title[$iface] : '') .' ('.$iface.')' . ' <small>'. T('Traffic data') .' | '.ucfirst(T($pageType)); ?>
+                        <?php print (isset($iface_title[$iface]) ? $iface_title[$iface] : '') .' ('.$iface.')' . ' <small>'. T('Traffic data') .' | '.mb_ucfirst(T($pageType)); ?>
                     </h1>
                 </div>
                 <div class="col-xs-3">

@@ -24,7 +24,7 @@
 		    	} else {
 		    		$pageIsSelected = "";
 		    	}
-                print '<li class="'.$pageIsSelected.'"><a href="'.$script.'?if='.$if.$p.'&page='.$pg.'">'.ucfirst($page_title[$pg]).'</a></li>';
+                print '<li class="'.$pageIsSelected.'"><a href="'.$script.'?if='.$if.$p.'&page='.$pg.'">'.mb_ucfirst($page_title[$pg]).'</a></li>';
             }
 		    
 		    print '
